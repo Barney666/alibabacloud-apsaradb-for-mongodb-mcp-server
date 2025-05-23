@@ -1,0 +1,14 @@
+[project]
+name = "alibabacloud-mongodb-mcp-server"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "alibabacloud-dds20151201>=9.0.0",
+    "alibabacloud-vpc20160428>=6.11.5",
+    "mcp>=1.0.0",
+    "pymongo>=4.12.1",
+    "python-dotenv>=1.1.0",
+    "requests>=2.32.3",
+]
