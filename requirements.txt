@@ -1,0 +1,8 @@
+alibabacloud-dds20151201>=9.0.0
+alibabacloud-sls20201230>=5.7.3
+alibabacloud-vpc20160428>=6.11.5
+dotenv>=0.9.9
+mcp>=1.0.0
+pymongo>=4.12.1
+python-dotenv>=1.1.0
+requests>=2.32.3
