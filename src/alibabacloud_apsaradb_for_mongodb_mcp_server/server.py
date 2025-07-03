@@ -85,7 +85,6 @@ region2project = {
 }
 
 
-# TODO ignore to push
 @mcp.tool()
 def get_audit_log_from_sls(
         region_id: str,
@@ -122,7 +121,7 @@ def get_audit_log_from_sls(
             logstore="mongo_audit_log",
             request=get_logs_from_sls_request
         )
-        return {"logs": response.body, "count": len(response.body)}
+        return {"count": len(response.body), "logs": response.body}
     except Exception as e:
         logger.error(f"Failed to get logs from sls: {str(e)}")
         return f"Failed to get logs from sls: {str(e)}"

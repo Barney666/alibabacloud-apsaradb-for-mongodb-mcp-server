@@ -84,6 +84,39 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/a0/87/1d7019d23891897cb076b2f7e3c81ab3c2ba91de3bb067196f675d60d34c/alibabacloud-credentials-api-1.0.0.tar.gz", hash = "sha256:8c340038d904f0218d7214a8f4088c31912bfcf279af2cbc7d9be4897a97dd2f", size = 2330, upload-time = "2025-01-13T05:53:04.931Z" }
 
 [[package]]
+name = "alibabacloud-darabonba-array"
+version = "0.1.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/50/be/1813d7553e11e20a1422ffaaead392cfa7239a855c7e67c6a6b5776cfa64/alibabacloud_darabonba_array-0.1.0.tar.gz", hash = "sha256:7f9a7c632518ff4f0cebb0d4e825a48c12e7cf0b9016ea25054dd73732e155aa", size = 2306, upload-time = "2022-11-01T06:32:47.928Z" }
+
+[[package]]
+name = "alibabacloud-darabonba-encode-util"
+version = "0.0.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/b6/d8/22543b2ade9aa68fef028a9f0c4154bfdb970926f918f63d7b85bae527a9/alibabacloud_darabonba_encode_util-0.0.2.tar.gz", hash = "sha256:f1c484f276d60450fa49b4b2987194e741fcb2f7faae7f287c0ae65abc85fd4d", size = 3990, upload-time = "2022-12-10T04:43:48.086Z" }
+
+[[package]]
+name = "alibabacloud-darabonba-map"
+version = "0.0.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/d5/bc/f11d56adffffade9a0d33ccca155ce82ca950b97cdce27a75228715c4639/alibabacloud_darabonba_map-0.0.1.tar.gz", hash = "sha256:adb17384658a1a8f72418f1838d4b6a5fd2566bfd392a3ef06d9dbb0a595a23f", size = 2056, upload-time = "2021-12-04T03:41:20.369Z" }
+
+[[package]]
+name = "alibabacloud-darabonba-signature-util"
+version = "0.0.4"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "cryptography" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/13/09/2118a2df631eaa06a291013ea61f31e449ba7a3cc3d6061477a43420e93a/alibabacloud_darabonba_signature_util-0.0.4.tar.gz", hash = "sha256:71d79b2ae65957bcfbf699ced894fda782b32f9635f1616635533e5a90d5feb0", size = 4170, upload-time = "2022-12-10T04:44:42.979Z" }
+
+[[package]]
+name = "alibabacloud-darabonba-string"
+version = "0.0.4"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/f9/d4/3d22bd2ff88985f970a10f8cedf2ea326d11d4d95e244f7665dc83d26465/alibabacloud-darabonba-string-0.0.4.tar.gz", hash = "sha256:ec6614c0448dadcbc5e466485838a1f8cfdd911135bea739e20b14511270c6f7", size = 2852, upload-time = "2021-12-13T13:30:06.114Z" }
+
+[[package]]
 name = "alibabacloud-dds20151201"
 version = "9.0.0"
 source = { registry = "https://pypi.org/simple" }
@@ -108,6 +141,34 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/24/54/56736a0f224b3f2b65bb9c9ff9e20fa390351a7587c99f19ca1f8d596ae1/alibabacloud_endpoint_util-0.0.3.tar.gz", hash = "sha256:8c0efb76fdcc3af4ca716ef24bbce770201a3f83f98c0afcf81655f684b9c7d2", size = 2756, upload-time = "2020-09-16T07:27:42.19Z" }
 
 [[package]]
+name = "alibabacloud-gateway-sls"
+version = "0.3.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "alibabacloud-credentials" },
+    { name = "alibabacloud-darabonba-array" },
+    { name = "alibabacloud-darabonba-encode-util" },
+    { name = "alibabacloud-darabonba-map" },
+    { name = "alibabacloud-darabonba-signature-util" },
+    { name = "alibabacloud-darabonba-string" },
+    { name = "alibabacloud-gateway-sls-util" },
+    { name = "alibabacloud-gateway-spi" },
+    { name = "alibabacloud-openapi-util" },
+    { name = "alibabacloud-tea-util" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/be/50/59c40c88d72b5a50e5b276c743cc889d46fb568db99dc8023ea2bbbbb03c/alibabacloud_gateway_sls-0.3.2.tar.gz", hash = "sha256:3b7f02ee29368be9469a122dc3feae4f87e57b7ddc3ad539cb2fc152bf3aa908", size = 7587, upload-time = "2025-03-03T12:17:52.647Z" }
+
+[[package]]
+name = "alibabacloud-gateway-sls-util"
+version = "0.3.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "lz4" },
+    { name = "zstd" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/c2/27/e9a32ee8a86689c8860c653ae6a77226a5b46440dcc1a6f385b6a2f9bf39/alibabacloud_gateway_sls_util-0.3.1.tar.gz", hash = "sha256:5976881d3bcd8ebe3defdfab04706f28ee7e2b1ca761706438518e640f3f3220", size = 3170, upload-time = "2025-01-08T02:23:41.431Z" }
+
+[[package]]
 name = "alibabacloud-gateway-spi"
 version = "0.0.3"
 source = { registry = "https://pypi.org/simple" }
@@ -122,7 +183,9 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "alibabacloud-dds20151201" },
+    { name = "alibabacloud-sls20201230" },
     { name = "alibabacloud-vpc20160428" },
+    { name = "dotenv" },
     { name = "mcp" },
     { name = "pymongo" },
     { name = "python-dotenv" },
@@ -132,7 +195,9 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "alibabacloud-dds20151201", specifier = ">=9.0.0" },
+    { name = "alibabacloud-sls20201230", specifier = ">=5.7.3" },
     { name = "alibabacloud-vpc20160428", specifier = ">=6.11.5" },
+    { name = "dotenv", specifier = ">=0.9.9" },
     { name = "mcp", specifier = ">=1.0.0" },
     { name = "pymongo", specifier = ">=4.12.1" },
     { name = "python-dotenv", specifier = ">=1.1.0" },
@@ -148,6 +213,21 @@ dependencies = [
     { name = "cryptography" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/f6/50/5f41ab550d7874c623f6e992758429802c4b52a6804db437017e5387de33/alibabacloud_openapi_util-0.2.2.tar.gz", hash = "sha256:ebbc3906f554cb4bf8f513e43e8a33e8b6a3d4a0ef13617a0e14c3dda8ef52a8", size = 7201, upload-time = "2023-10-23T07:44:18.523Z" }
+
+[[package]]
+name = "alibabacloud-sls20201230"
+version = "5.7.4"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "alibabacloud-gateway-sls" },
+    { name = "alibabacloud-openapi-util" },
+    { name = "alibabacloud-tea-openapi" },
+    { name = "alibabacloud-tea-util" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/3f/82/923e9261bea5714826ec77ac496901045490ff6bbf9661a1b94b637fd85b/alibabacloud_sls20201230-5.7.4.tar.gz", hash = "sha256:9fb9616b1153e21eeff44b3155eedc7cd61d22048169523381f783b2d65cbaee", size = 116246, upload-time = "2025-06-10T08:57:21.066Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/3d/2a/01520f047519b5c2374a7253e73a637852021a512e558189ddb019239aae/alibabacloud_sls20201230-5.7.4-py3-none-any.whl", hash = "sha256:a2b41d20609d3904fb2558f31d341a23c96e5e35f5e4a00fde28d0934a08ce36", size = 114724, upload-time = "2025-06-10T08:57:19.38Z" },
+]
 
 [[package]]
 name = "alibabacloud-tea"
@@ -367,6 +447,17 @@ wheels = [
 ]
 
 [[package]]
+name = "dotenv"
+version = "0.9.9"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "python-dotenv" },
+]
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b2/b7/545d2c10c1fc15e48653c91efde329a790f2eecfbbf2bd16003b5db2bab0/dotenv-0.9.9-py2.py3-none-any.whl", hash = "sha256:29cf74a087b31dafdb5a446b6d7e11cbce8ed2741540e2339c69fbef92c94ce9", size = 1892, upload-time = "2025-02-19T22:15:01.647Z" },
+]
+
+[[package]]
 name = "frozenlist"
 version = "1.6.0"
 source = { registry = "https://pypi.org/simple" }
@@ -462,6 +553,22 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/f1/70/7703c29685631f5a7590aa73f1f1d3fa9a380e654b86af429e0934a32f7d/idna-3.10.tar.gz", hash = "sha256:12f65c9b470abda6dc35cf8e63cc574b1c52b11df2c86030af0ac09b01b13ea9", size = 190490, upload-time = "2024-09-15T18:07:39.745Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/76/c6/c88e154df9c4e1a2a66ccf0005a88dfb2650c1dffb6f5ce603dfbd452ce3/idna-3.10-py3-none-any.whl", hash = "sha256:946d195a0d259cbba61165e88e65941f16e9b36ea6ddb97f00452bae8b1287d3", size = 70442, upload-time = "2024-09-15T18:07:37.964Z" },
+]
+
+[[package]]
+name = "lz4"
+version = "4.4.4"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/c6/5a/945f5086326d569f14c84ac6f7fcc3229f0b9b1e8cc536b951fd53dfb9e1/lz4-4.4.4.tar.gz", hash = "sha256:070fd0627ec4393011251a094e08ed9fdcc78cb4e7ab28f507638eee4e39abda", size = 171884, upload-time = "2025-04-01T22:55:58.62Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/3b/3c/d1d1b926d3688263893461e7c47ed7382a969a0976fc121fc678ec325fc6/lz4-4.4.4-cp313-cp313-macosx_10_13_x86_64.whl", hash = "sha256:ed6eb9f8deaf25ee4f6fad9625d0955183fdc90c52b6f79a76b7f209af1b6e54", size = 220678, upload-time = "2025-04-01T22:55:41.78Z" },
+    { url = "https://files.pythonhosted.org/packages/26/89/8783d98deb058800dabe07e6cdc90f5a2a8502a9bad8c5343c641120ace2/lz4-4.4.4-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:18ae4fe3bafb344dbd09f976d45cbf49c05c34416f2462828f9572c1fa6d5af7", size = 189670, upload-time = "2025-04-01T22:55:42.775Z" },
+    { url = "https://files.pythonhosted.org/packages/22/ab/a491ace69a83a8914a49f7391e92ca0698f11b28d5ce7b2ececa2be28e9a/lz4-4.4.4-cp313-cp313-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:57fd20c5fc1a49d1bbd170836fccf9a338847e73664f8e313dce6ac91b8c1e02", size = 1238746, upload-time = "2025-04-01T22:55:43.797Z" },
+    { url = "https://files.pythonhosted.org/packages/97/12/a1f2f4fdc6b7159c0d12249456f9fe454665b6126e98dbee9f2bd3cf735c/lz4-4.4.4-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:e9cb387c33f014dae4db8cb4ba789c8d2a0a6d045ddff6be13f6c8d9def1d2a6", size = 1265119, upload-time = "2025-04-01T22:55:44.943Z" },
+    { url = "https://files.pythonhosted.org/packages/50/6e/e22e50f5207649db6ea83cd31b79049118305be67e96bec60becf317afc6/lz4-4.4.4-cp313-cp313-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:d0be9f68240231e1e44118a4ebfecd8a5d4184f0bdf5c591c98dd6ade9720afd", size = 1184954, upload-time = "2025-04-01T22:55:46.161Z" },
+    { url = "https://files.pythonhosted.org/packages/4c/c4/2a458039645fcc6324ece731d4d1361c5daf960b553d1fcb4261ba07d51c/lz4-4.4.4-cp313-cp313-win32.whl", hash = "sha256:e9ec5d45ea43684f87c316542af061ef5febc6a6b322928f059ce1fb289c298a", size = 88289, upload-time = "2025-04-01T22:55:47.601Z" },
+    { url = "https://files.pythonhosted.org/packages/00/96/b8e24ea7537ab418074c226279acfcaa470e1ea8271003e24909b6db942b/lz4-4.4.4-cp313-cp313-win_amd64.whl", hash = "sha256:a760a175b46325b2bb33b1f2bbfb8aa21b48e1b9653e29c10b6834f9bb44ead4", size = 99925, upload-time = "2025-04-01T22:55:48.463Z" },
+    { url = "https://files.pythonhosted.org/packages/a5/a5/f9838fe6aa132cfd22733ed2729d0592259fff074cefb80f19aa0607367b/lz4-4.4.4-cp313-cp313-win_arm64.whl", hash = "sha256:f4c21648d81e0dda38b4720dccc9006ae33b0e9e7ffe88af6bf7d4ec124e2fba", size = 89743, upload-time = "2025-04-01T22:55:49.716Z" },
 ]
 
 [[package]]
@@ -840,4 +947,20 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/ed/f7/f0f2500cf0c469beb2050b522c7815c575811627e6d3eb9ec7550ddd0bfe/yarl-1.20.0-cp313-cp313t-win32.whl", hash = "sha256:65a4053580fe88a63e8e4056b427224cd01edfb5f951498bfefca4052f0ce0ac", size = 93816, upload-time = "2025-04-17T00:44:25.491Z" },
     { url = "https://files.pythonhosted.org/packages/3f/93/f73b61353b2a699d489e782c3f5998b59f974ec3156a2050a52dfd7e8946/yarl-1.20.0-cp313-cp313t-win_amd64.whl", hash = "sha256:53b2da3a6ca0a541c1ae799c349788d480e5144cac47dba0266c7cb6c76151fe", size = 101093, upload-time = "2025-04-17T00:44:27.418Z" },
     { url = "https://files.pythonhosted.org/packages/ea/1f/70c57b3d7278e94ed22d85e09685d3f0a38ebdd8c5c73b65ba4c0d0fe002/yarl-1.20.0-py3-none-any.whl", hash = "sha256:5d0fe6af927a47a230f31e6004621fd0959eaa915fc62acfafa67ff7229a3124", size = 46124, upload-time = "2025-04-17T00:45:12.199Z" },
+]
+
+[[package]]
+name = "zstd"
+version = "1.5.7.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/0f/78/9a476e09c825304df47b98be80d1ffe223733b03550af71325415028f615/zstd-1.5.7.2.tar.gz", hash = "sha256:6d8684c69009be49e1b18ec251a5eb0d7e24f93624990a8a124a1da66a92fc8a", size = 670481, upload-time = "2025-06-23T12:36:08.131Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a1/63/0d392a8ec2231dee9fc2290faea7a6642584686720d6b77899ad8b12e35a/zstd-1.5.7.2-cp313-cp313-macosx_10_13_x86_64.whl", hash = "sha256:6e684e27064b6550aa2e7dc85d171ea1b62cb5930a2c99b3df9b30bf620b5c06", size = 269438, upload-time = "2025-06-23T12:57:52.507Z" },
+    { url = "https://files.pythonhosted.org/packages/be/1f/85aae095f92811bed3d2944bbed971fe07ec1dd2d82c9eb1395d69d2123c/zstd-1.5.7.2-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:fd6262788a98807d6b2befd065d127db177c1cd76bb8e536e0dded419eb7c7fb", size = 228179, upload-time = "2025-06-23T12:57:51.031Z" },
+    { url = "https://files.pythonhosted.org/packages/31/4e/547949993ea347ac44f5908262ebe6e85edfa7b11a5df136319789be731d/zstd-1.5.7.2-cp313-cp313-manylinux_2_14_x86_64.whl", hash = "sha256:53948be45f286a1b25c07a6aa2aca5c902208eb3df9fe36cf891efa0394c8b71", size = 302763, upload-time = "2025-06-23T12:51:51.615Z" },
+    { url = "https://files.pythonhosted.org/packages/25/ca/4a6882846e3049be249031f825251a9229ecad471e18e7fd27974540549c/zstd-1.5.7.2-cp313-cp313-win32.whl", hash = "sha256:edf816c218e5978033b7bb47dcb453dfb71038cb8a9bf4877f3f823e74d58174", size = 149452, upload-time = "2025-06-23T12:57:32.116Z" },
+    { url = "https://files.pythonhosted.org/packages/e7/aa/89339605864c9803e4738f176932a6c9f1ad99d03c03ef2cb0634ddca680/zstd-1.5.7.2-cp313-cp313-win_amd64.whl", hash = "sha256:eea9bddf06f3f5e1e450fd647665c86df048a45e8b956d53522387c1dff41b7a", size = 166625, upload-time = "2025-06-23T12:57:33.334Z" },
+    { url = "https://files.pythonhosted.org/packages/07/e9/501291a2f9b300b2c73dcc6d086df778e895e71573df9575def54d9dbab2/zstd-1.5.7.2-cp313-cp313t-manylinux_2_14_x86_64.whl", hash = "sha256:1d71f9f92b3abe18b06b5f0aefa5b9c42112beef3bff27e36028d147cb4426a6", size = 302906, upload-time = "2025-06-23T13:21:13.331Z" },
+    { url = "https://files.pythonhosted.org/packages/d2/f7/9243bb99b8525421a7db741604d29aebe9a849539500f2248d74bf2614be/zstd-1.5.7.2-cp314-cp314-manylinux_2_14_x86_64.whl", hash = "sha256:a6105b8fa21dbc59e05b6113e8e5d5aaf56c5d2886aa5778d61030af3256bbb7", size = 302779, upload-time = "2025-06-23T13:09:22.701Z" },
+    { url = "https://files.pythonhosted.org/packages/9b/a5/6ed36bed134d065ff6198707e7411fde7436d7927e325b8ace26f9e21159/zstd-1.5.7.2-cp314-cp314t-manylinux_2_14_x86_64.whl", hash = "sha256:d0b0ca097efb5f67157c61a744c926848dcccf6e913df2f814e719aa78197a4b", size = 302910, upload-time = "2025-06-23T13:15:13.081Z" },
 ]
