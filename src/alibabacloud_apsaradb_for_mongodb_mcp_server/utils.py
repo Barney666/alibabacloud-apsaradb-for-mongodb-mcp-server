@@ -8,7 +8,7 @@ from alibabacloud_vpc20160428.client import Client as Vpc20160428Client
 from alibabacloud_sls20201230.client import Client as Sls20201230Client
 
 
-mcp = FastMCP("apsaradb_mongodb_mcp_server", log_level="ERROR")
+mcp = FastMCP("apsaradb_mongodb_mcp_server")
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
