@@ -1,8 +1,12 @@
+import time
 from typing import Dict, Any, Literal, Optional, List
 from utils import mcp, logger, get_mongodb_connection_configuration, get_dds_client, get_vpc_client
 from pymongo import MongoClient, errors
 from alibabacloud_dds20151201 import models as dds_20151201_models
 from alibabacloud_vpc20160428 import models as vpc_20160428_models
+from alibabacloud_sls20201230 import models as sls_20201230_models
+from utils import get_interal_sls_client
+from datetime import datetime
 
 
 """
@@ -70,6 +74,121 @@ def get_top_reusable_space_collections(connection_string, top_n=10):
 """
 Using ApsaraDB OpenAPI for instance operations
 """
+
+
+region2project = {
+    "cn-hangzhou": "mongo-flink-hz",
+    "cn-shanghai": "mongo-flink-sh",
+    "cn-beijing": "mongo-flink-bj",
+    "cn-shenzhen": "mongo-flink-sz",
+    "cn-zhangjiakou": "mongo-flink-zb",
+}
+
+
+# TODO ignore to push
+@mcp.tool()
+def get_audit_log_from_sls(
+        region_id: str,
+        from_: str,
+        to: str,
+        query: str,
+        offset: int,
+):
+    """
+    Get audit log from sls, including slow logs, insert logs, and so on. Up to 100 items can be returned in a single call. Each returned element is a log entry.
+    Attention: If returned count is 100, it means there are still more results to retrieve, and you must call again with the offset increased by 100 until returned count is less than 100!
+
+    :param region_id: The region of the instance.
+    :param from_: The start time of the log query, format 2025-04-08 13:00
+    :param to: The end time of the log query, unix timestamp format, format 2025-04-08 14:00
+    :param query: The log query statement. At least a field representing instance id. Query slow logs in a similar way `instanceid: "dds-bp1e88edad10ca44" and audit_type: "slowOp"`
+    :param offset: The offset for this call.
+    :return: The return value is a dictionary with two keys. One key is "logs", whose value is an array composed of all logs. The other key is "count", representing the number of logs. It is particularly important to note that if the value of "count" is 100, it indicates that there are still logs that have not been retrieved, and the offset needs to be increased by 100 before being called again
+    """
+
+    start_date, end_date = datetime.strptime(from_, "%Y-%m-%d %H:%M:%S"), datetime.strptime(to, "%Y-%m-%d %H:%M:%S")
+    start_ts, end_ts = int(start_date.timestamp()), int(end_date.timestamp())
+    client = get_interal_sls_client(region_id)
+    get_logs_from_sls_request = sls_20201230_models.GetLogsRequest(
+        from_=start_ts,
+        to=end_ts,
+        query=query,
+        offset=offset,
+        line=100,
+    )
+    try:
+        response = client.get_logs(
+            project=region2project[region_id],
+            logstore="mongo_audit_log",
+            request=get_logs_from_sls_request
+        )
+        return {"logs": response.body, "count": len(response.body)}
+    except Exception as e:
+        logger.error(f"Failed to get logs from sls: {str(e)}")
+        return f"Failed to get logs from sls: {str(e)}"
+
+
+# @mcp.tool()
+# def get_running_log_records_download_path(
+#         region_id: str,
+#         start_time: str,
+#         end_time: str,
+#         instance_id: str,
+#         query: str,
+#         project: str,
+#         logstore: str = "mongo_audit_log",
+# ) -> str:
+#     """
+#         Query audit log's download link
+#
+#         :param region_id: The region of the instance. Prefer to query by `describe_db_instance_attribute` tool in advance.
+#         :param start_time: The start time of the log query (e.g., 2025-04-08 13:00)
+#         :param end_time: The end time of the log query (e.g., 2025-04-08 15:00)
+#         :param instance_id: The ID of the MongoDB instance.
+#         :param query: The log query statement, including keywords and mappings (e.g., instanceid: "dds-bp1e88edad10ca44" and audit_type: "slowOp")
+#         :param project: Prefer to query by `get_sls_project_name` tool in advance.
+#         :param logstore: The log store of running log, fixed "mongo_audit_log"
+#
+#         :return: the download link of running log
+#     """
+#
+#     client = get_interal_sls_client(region_id)
+#     start_date, end_date = datetime.strptime(start_time, "%Y-%m-%d %H:%M:%S"), datetime.strptime(end_time, "%Y-%m-%d %H:%M:%S")
+#     start_ts, end_ts = int(start_date.timestamp()), int(end_date.timestamp())
+#     file_name = instance_id + "-" + str(start_ts) + "-" + str(end_ts)
+#     create_download_job_request = sls_20201230_models.CreateDownloadJobRequest(
+#         configuration=sls_20201230_models.CreateDownloadJobRequestConfiguration(
+#             logstore=logstore,
+#             from_time=start_ts,
+#             to_time=end_ts,
+#             query=query,
+#             allow_in_complete=False,
+#             sink=sls_20201230_models.CreateDownloadJobRequestConfigurationSink(
+#                 type="AliyunOSS",
+#                 content_type="json",
+#                 compression_type="gzip"
+#             )
+#         ),
+#         name=file_name,
+#         display_name=file_name,
+#     )
+#     file_path = ""
+#     try:
+#         client.create_download_job(project, create_download_job_request)
+#         while True:
+#             result = client.get_download_job(
+#                 project=project,
+#                 download_job_name=file_name
+#             ).body.to_map()
+#             if result["status"] == "SUCCEEDED":
+#                 file_path = result["executionDetails"]["filePath"]
+#                 break
+#             time.sleep(5)
+#     except Exception as e:
+#         logger.error(f"Failed to create or get download job: {str(e)}")
+#         return f"Failed to create or get download job, exception: {str(e)}"
+#     if file_path != "":
+#         return file_path
 
 
 @mcp.tool()

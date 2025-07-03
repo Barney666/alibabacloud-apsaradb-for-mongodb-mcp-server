@@ -4,11 +4,11 @@ from dotenv import load_dotenv
 from mcp.server.fastmcp import FastMCP
 from alibabacloud_dds20151201.client import Client as Dds20151201Client
 from alibabacloud_tea_openapi import models as open_api_models
-from alibabacloud_credentials.client import Client as CredentialClient
 from alibabacloud_vpc20160428.client import Client as Vpc20160428Client
+from alibabacloud_sls20201230.client import Client as Sls20201230Client
 
 
-mcp = FastMCP("apsaradb_mongodb_mcp_server")
+mcp = FastMCP("apsaradb_mongodb_mcp_server", log_level="ERROR")
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
@@ -91,4 +91,18 @@ def get_vpc_client(region_id: str) -> Vpc20160428Client:
         return Vpc20160428Client(config)
     except Exception as e:
         logger.error("Failed to create VPC client: %s", str(e))
+        raise
+
+
+def get_interal_sls_client(region_id: str) -> Sls20201230Client:
+    try:
+        config = open_api_models.Config(
+            access_key_id=os.getenv("INTERNAL_ACCESS_KEY_ID"),
+            access_key_secret=os.getenv("INTERNAL_ACCESS_KEY_SECRET"),
+        )
+        if region_id:
+            config.endpoint = f'{region_id}.log.aliyuncs.com'
+        return Sls20201230Client(config)
+    except Exception as e:
+        logger.error("Failed to create SLS client: %s", str(e))
         raise
