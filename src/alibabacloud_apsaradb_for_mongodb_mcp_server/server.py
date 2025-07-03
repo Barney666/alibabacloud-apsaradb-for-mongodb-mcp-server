@@ -115,14 +115,13 @@ def get_audit_log_from_sls(
         offset=offset,
         line=100,
     )
-    logger.info(f"start_ts: {start_ts}, end_ts: {end_ts}")
     try:
         response = client.get_logs(
             project=region2project[region_id],
             logstore="mongo_audit_log",
             request=get_logs_from_sls_request
         )
-        return {"count": len(response.body), "code": response.status_code, "logs": response.body}
+        return {"start_ts": {start_ts}, "end_ts": {end_ts}, "count": len(response.body), "code": response.status_code, "logs": response.body}
     except Exception as e:
         logger.error(f"Failed to get logs from sls: {str(e)}")
         return f"Failed to get logs from sls: {str(e)}"
