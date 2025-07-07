@@ -7,6 +7,7 @@ from alibabacloud_vpc20160428 import models as vpc_20160428_models
 from alibabacloud_sls20201230 import models as sls_20201230_models
 from utils import get_interal_sls_client
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 
 """
@@ -99,14 +100,15 @@ def get_audit_log_from_sls(
 
     :param region_id: The region of the instance.
     :param from_: The start time of the log query, format 2025-04-08 13:00
-    :param to: The end time of the log query, unix timestamp format, format 2025-04-08 14:00
+    :param to: The end time of the log query, format 2025-04-08 14:00
     :param query: The log query statement. At least a field representing instance id. Query slow logs in a similar way `instanceid: "dds-bp1e88edad10ca44" and audit_type: "slowOp"`
     :param offset: The offset for this call.
     :return: The return value is a dictionary with two keys. One key is "logs", whose value is an array composed of all logs. The other key is "count", representing the number of logs. It is particularly important to note that if the value of "count" is 100, it indicates that there are still logs that have not been retrieved, and the offset needs to be increased by 100 before being called again
     """
 
+    tz_utc8 = ZoneInfo("Asia/Shanghai")
     start_date, end_date = datetime.strptime(from_, "%Y-%m-%d %H:%M:%S"), datetime.strptime(to, "%Y-%m-%d %H:%M:%S")
-    start_ts, end_ts = int(start_date.timestamp()), int(end_date.timestamp())
+    start_ts, end_ts = int(start_date.replace(tzinfo=tz_utc8).timestamp()), int(end_date.replace(tzinfo=tz_utc8).timestamp())
     client = get_interal_sls_client(region_id)
     get_logs_from_sls_request = sls_20201230_models.GetLogsRequest(
         from_=start_ts,
