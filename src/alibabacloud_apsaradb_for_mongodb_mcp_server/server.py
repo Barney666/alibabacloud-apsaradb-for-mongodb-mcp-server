@@ -121,7 +121,8 @@ def get_audit_log_from_sls(
             logstore="mongo_audit_log",
             request=get_logs_from_sls_request
         )
-        return {"start_ts": {start_ts}, "end_ts": {end_ts}, "count": len(response.body), "code": response.status_code, "logs": response.body}
+        return {"start_date": {start_date}, "end_date": {end_date}, "start_ts": {start_ts}, "end_ts": {end_ts},
+                "query": {query}, "count": len(response.body), "code": response.status_code, "logs": response.body}
     except Exception as e:
         logger.error(f"Failed to get logs from sls: {str(e)}")
         return f"Failed to get logs from sls: {str(e)}"
