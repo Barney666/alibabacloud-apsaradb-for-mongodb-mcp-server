@@ -101,6 +101,7 @@ def get_audit_log_from_sls(
     :param from_: The start date string of the log query, like 2025-04-08 13:00
     :param to: The end date string of the log query, like 2025-04-08 14:00
     :param query: The log query statement. At least a field representing instance id. Query slow logs in a similar way `instanceid: "dds-bp1e88edad10ca44" and audit_type: "slowOp"`
+    If there are keywords that need to be matched, directly connect them with AND, for example, and index build, and optype: update
     :param offset: The offset for this call.
     :return: The return value is a dictionary with two keys. One key is "logs", whose value is an array composed of all logs. The other key is "count", representing the number of logs.
     """
