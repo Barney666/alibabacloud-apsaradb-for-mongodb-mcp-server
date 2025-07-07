@@ -102,6 +102,7 @@ def get_audit_log_from_sls(
     :param to: The end date string of the log query, like 2025-04-08 14:00
     :param query: The log query statement. At least a field representing instance id. Query slow logs in a similar way `instanceid: "dds-bp1e88edad10ca44" and audit_type: "slowOp"`
     :param offset: The offset for this call.
+    :return: The return value is a dictionary with two keys. One key is "logs", whose value is an array composed of all logs. The other key is "count", representing the number of logs.
     """
 
     tz_utc8 = ZoneInfo("Asia/Shanghai")
@@ -121,8 +122,9 @@ def get_audit_log_from_sls(
             logstore="mongo_audit_log",
             request=get_logs_from_sls_request
         )
-        return {"start_date": {start_date}, "end_date": {end_date}, "start_ts": {start_ts}, "end_ts": {end_ts},
-                "query": {query}, "count": len(response.body), "code": response.status_code, "logs": response.body}
+        return {"logs": response.body, "count": len(response.body)}
+        # return {"start_date": {start_date}, "end_date": {end_date}, "start_ts": {start_ts}, "end_ts": {end_ts},
+        #         "query": {query}, "count": len(response.body), "code": response.status_code, "logs": response.body}
     except Exception as e:
         logger.error(f"Failed to get logs from sls: {str(e)}")
         return f"Failed to get logs from sls: {str(e)}"
