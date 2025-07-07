@@ -99,8 +99,8 @@ def get_audit_log_from_sls(
     Attention: If returned count is 100, it means there are still more results to retrieve, and you must call again with the offset increased by 100 until returned count is less than 100!
 
     :param region_id: The region of the instance.
-    :param from_: The start time of the log query, format 2025-04-08 13:00
-    :param to: The end time of the log query, format 2025-04-08 14:00
+    :param from_: The start date string of the log query, like 2025-04-08 13:00
+    :param to: The end date string of the log query, like 2025-04-08 14:00
     :param query: The log query statement. At least a field representing instance id. Query slow logs in a similar way `instanceid: "dds-bp1e88edad10ca44" and audit_type: "slowOp"`
     :param offset: The offset for this call.
     :return: The return value is a dictionary with two keys. One key is "logs", whose value is an array composed of all logs. The other key is "count", representing the number of logs. It is particularly important to note that if the value of "count" is 100, it indicates that there are still logs that have not been retrieved, and the offset needs to be increased by 100 before being called again
