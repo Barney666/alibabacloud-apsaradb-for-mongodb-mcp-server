@@ -115,7 +115,7 @@ def get_audit_log_from_sls(
         to=end_ts,
         query=query,
         offset=offset,
-        line=100,
+        line=50,
     )
     try:
         response = client.get_logs(
